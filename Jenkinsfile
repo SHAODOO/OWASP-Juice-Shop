@@ -24,7 +24,7 @@ pipeline {
                 expression { params.SNYK == true }
             }
             steps {
-                
+                echo 'Snyk'
             }
         }
         stage('Trivy') {
@@ -32,7 +32,7 @@ pipeline {
                 expression { params.TRIVY == true }
             }
             steps {
-                
+                echo 'Trivy'
             }
         }
     }
