@@ -3,29 +3,9 @@ pipeline {
         label 'windows'
     }
     stages {
-        stage('Bash') {
+        stage('OWASP Dependency Check') {
             steps {
-                bat 'ls'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo "Build"
-            }
-        }
-        stage('Test'){
-            steps {
-                echo "Test"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo "Deploy"
-            }
-        }
-        stage('Release') {
-            steps {
-                echo "Release"
+                dependencyCheck additionalArguments: '--scan \"${WORKSPACE}\"', odcInstallation: 'Dependency-Check-Installation'
             }
         }
     }
