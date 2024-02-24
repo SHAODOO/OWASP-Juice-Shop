@@ -3,6 +3,11 @@ pipeline {
         label 'windows'
     }
     stages {
+        stage('Bash') {
+            steps {
+                bat 'whoami'
+            }
+        }
         stage('Build') {
             steps {
                 echo "Build"
