@@ -19,5 +19,21 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        stage('Snyk') {
+            when {
+                expression { params.SNYK == true }
+            }
+            steps {
+                
+            }
+        }
+        stage('Trivy') {
+            when {
+                expression { params.TRIVY == true }
+            }
+            steps {
+                
+            }
+        }
     }
 }
