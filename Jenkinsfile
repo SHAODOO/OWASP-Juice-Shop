@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Bash') {
             steps {
-                bat 'whoami'
+                bat 'ls'
             }
         }
         stage('Build') {
