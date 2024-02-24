@@ -35,7 +35,7 @@ pipeline {
                 bat '''
                     cd C:\\jenkins\\trivy_0.49.0_windows-64bit
                     trivy.exe
-                    trivy fs --scanners vuln,secret,config,license \"${WORKSPACE}\"
+                    trivy fs --scanners vuln,secret,config,license "${WORKSPACE}"
                 '''
             }
         }
