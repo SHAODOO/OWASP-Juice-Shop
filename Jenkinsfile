@@ -32,7 +32,11 @@ pipeline {
                 expression { params.TRIVY == true }
             }
             steps {
-                echo 'Trivy'
+                bat '''
+                    cd C:\\jenkins\\trivy_0.49.0_windows-64bit
+                    trivy.exe
+                    trivy fs --scanners vuln,secret,config,license \"${WORKSPACE}\"
+                '''
             }
         }
     }
