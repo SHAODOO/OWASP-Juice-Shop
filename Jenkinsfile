@@ -69,7 +69,6 @@ pipeline {
                 echo 'Deploy'
             }
         }
-    }
 
     post {
 
