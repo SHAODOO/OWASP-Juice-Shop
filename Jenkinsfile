@@ -15,6 +15,18 @@ pipeline {
     }
     
     stages {
+        stage ('Build') {
+            steps {
+                echo 'Build'
+            }
+        }
+
+        stage ('Test') {
+            steps (
+                echo 'Test'
+            )
+        }
+
         stage('OWASP Dependency Check') {
             when {
                 expression { params.OWASP_DEPENDENCY_CHECK == true }
@@ -24,6 +36,7 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+
         stage('Snyk') {
             when {
                 expression { params.SNYK == true }
@@ -37,6 +50,7 @@ pipeline {
                 }
             }
         }
+
         stage('Trivy') {
             when {
                 expression { params.TRIVY == true }
@@ -49,5 +63,15 @@ pipeline {
                 """
             }
         }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy'
+            }
+        }
+    }
+
+    post {
+        
     }
 }
