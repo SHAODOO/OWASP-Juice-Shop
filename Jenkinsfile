@@ -24,7 +24,7 @@ pipeline {
                 expression { params.SNYK == true }
             }
             steps {
-                snykSecurity failOnError: false, failOnIssues: false, snykInstallation: 'Snyk-Installation', snykTokenId: 'Snyk-API-Token', targetFile: '\"${WORKSPACE}\"'
+                snykSecurity failOnError: false, failOnIssues: false, snykInstallation: 'Snyk-Installation', snykTokenId: '9bd4a037-6e51-4407-a975-55d33b82deec9bd4a037-6e51-4407-a975-55d33b82deec', targetFile: '\"${WORKSPACE}\"'
             }
         }
         stage('Trivy') {
