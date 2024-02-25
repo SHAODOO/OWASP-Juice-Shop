@@ -22,7 +22,7 @@ pipeline {
         }
 
         stage('Test') {
-            steps {}
+            steps {
                 echo 'Test'
             }
         }
@@ -71,6 +71,8 @@ pipeline {
         }
 
     post {
-
+        always{
+            echo 'Post'
+        }
     }
 }
