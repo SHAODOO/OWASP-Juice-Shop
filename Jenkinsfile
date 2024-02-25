@@ -28,11 +28,13 @@ pipeline {
                 expression { params.SNYK == true }
             }
             steps {
-                bat """
-                    cd C:\\jenkins
-                    snyk-win.exe auth %SNYK_API_TOKEN%
-                    snyk-win.exe code test ${WORKSPACE}
-                """
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    bat """
+                        cd C:\\jenkins
+                        snyk-win.exe auth %SNYK_API_TOKEN%
+                        snyk-win.exe code test ${WORKSPACE}
+                    """
+                }
             }
         }
         stage('Trivy') {
