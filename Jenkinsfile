@@ -22,9 +22,9 @@ pipeline {
         }
 
         stage('Test') {
-            steps (
+            steps {}
                 echo 'Test'
-            )
+            }
         }
 
         stage('OWASP Dependency Check') {
