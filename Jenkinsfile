@@ -3,6 +3,10 @@ pipeline {
         label 'windows'
     }
 
+    environment {
+        SNYK-API-TOKEN = credentials('Snyk-API-Token')
+    }
+
     parameters {
         booleanParam(name: 'OWASP_DEPENDENCY_CHECK', defaultValue: false, description: 'Enable OWASP Dependency Check')
         booleanParam(name: 'SNYK', defaultValue: false, description: 'Enable Snyk Scan')
