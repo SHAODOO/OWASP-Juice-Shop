@@ -3,6 +3,11 @@ pipeline {
         label 'windows'
     }
 
+    environment {
+        SNYK = tool name: 'Snyk-Installation'
+        SNYK_TOKEN = credentials('Snyk-API-Token')
+    }
+
     parameters {
         booleanParam(name: 'OWASP_DEPENDENCY_CHECK', defaultValue: false, description: 'Enable OWASP Dependency Check')
         booleanParam(name: 'SNYK', defaultValue: false, description: 'Enable Snyk Scan')
@@ -24,7 +29,12 @@ pipeline {
                 expression { params.SNYK == true }
             }
             steps {
-                snykSecurity failOnError: false, failOnIssues: false, snykInstallation: 'Snyk-Installation', snykTokenId: '9bd4a037-6e51-4407-a975-55d33b82deec9bd4a037-6e51-4407-a975-55d33b82deec', targetFile: '\"${WORKSPACE}\"'
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    bat """
+                        ${SNYK}/snyk-win.exe auth ${SNYK_TOKEN}
+                        ${SNYK}/snyk-win.exe code test \"${WORKSPACE}\"
+                    """
+                }
             }
         }
         stage('Trivy') {
