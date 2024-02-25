@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        SNYK-API-TOKEN = credentials('Snyk-API-Token')
+        SNYK_API_TOKEN = credentials('Snyk-API-Token')
     }
 
     parameters {
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 bat """
                     cd C:\\jenkins
-                    snyk-win.exe auth ${SNYK-API-TOKEN}
+                    snyk-win.exe auth ${SNYK_API_TOKEN}
                     snyk-win.exe code test \"${WORKSPACE}\""
                 """
             }
