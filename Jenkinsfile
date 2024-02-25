@@ -4,6 +4,7 @@ pipeline {
     }
 
     environment {
+        SNYK = tool name: 'Snyk-Installation'
         SNYK_API_TOKEN = credentials('Snyk-API-Token')
     }
 
@@ -30,8 +31,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
                     bat """
-                        cd C:\\jenkins
-                        snyk-win.exe auth %SNYK_API_TOKEN%
+                        ${SNYK}/snyk-win.exe auth %SNYK_API_TOKEN%
                         snyk-win.exe code test ${WORKSPACE} --json-file-output=${WORKSPACE}/snyk-report.json
                     """
                 }
