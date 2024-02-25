@@ -69,7 +69,8 @@ pipeline {
                 echo 'Deploy'
             }
         }
-
+    }
+    
     post {
         always{
             echo 'Post'
