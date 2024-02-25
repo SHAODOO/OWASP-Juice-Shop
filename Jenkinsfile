@@ -31,7 +31,7 @@ pipeline {
                 bat """
                     cd C:\\jenkins
                     snyk-win.exe auth ${SNYK_API_TOKEN}
-                    snyk-win.exe code test \"${WORKSPACE}\""
+                    snyk-win.exe code test \"${WORKSPACE}\"
                 """
             }
         }
