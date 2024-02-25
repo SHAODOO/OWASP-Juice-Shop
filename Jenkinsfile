@@ -15,13 +15,13 @@ pipeline {
     }
     
     stages {
-        stage ('Build') {
+        stage('Build') {
             steps {
                 echo 'Build'
             }
         }
 
-        stage ('Test') {
+        stage('Test') {
             steps (
                 echo 'Test'
             )
@@ -72,6 +72,6 @@ pipeline {
     }
 
     post {
-        
+
     }
 }
