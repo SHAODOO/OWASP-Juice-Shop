@@ -32,7 +32,7 @@ pipeline {
                 expression { params.OWASP_DEPENDENCY_CHECK == true }
             }
             steps {
-                dependencyCheck additionalArguments: '--scan \"${WORKSPACE}\"', odcInstallation: 'Dependency-Check-Installation'
+                dependencyCheck additionalArguments: '--scan \"${WORKSPACE}\" --prettyPrint --format JSON --format XML', odcInstallation: 'Dependency-Check-Installation'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
@@ -59,7 +59,7 @@ pipeline {
                 bat """
                     cd C:\\jenkins\\trivy_0.49.0_windows-64bit
                     trivy.exe
-                    trivy fs --scanners vuln,secret,config,license ${WORKSPACE}
+                    trivy fs --scanners vuln,secret,config,license ${WORKSPACE} -f json -o ${WORKSPACE}/trivy-report.json
                 """
             }
         }
@@ -69,11 +69,17 @@ pipeline {
                 echo 'Deploy'
             }
         }
-    }
-    
-    post {
-        always{
-            echo 'Post'
+
+        stage('Email Report') {
+            steps {
+                echo 'Email Report'
+            }
+        }
+
+        stage('Clean Workspace') {
+            steps {
+                echo 'Clean Workspace'
+            }
         }
     }
 }
