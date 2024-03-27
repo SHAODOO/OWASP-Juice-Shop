@@ -49,6 +49,7 @@ const swaggerDocument = yaml.load(fs.readFileSync('./swagger.yml', 'utf8'))
 const {
   ensureFileIsPassed,
   handleZipFileUpload,
+  fgfh
   checkUploadSize,
   checkFileType,
   handleXmlUpload
