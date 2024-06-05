@@ -10,6 +10,8 @@ import challengeUtils = require('../lib/challengeUtils')
 const security = require('../lib/insecurity')
 const cache = require('../data/datacache')
 const challenges = cache.challenges
+// flag for the changePasswordBenderChallenge
+const password = "you_will_never_guess_this_password"
 
 module.exports = function changePassword () {
   return ({ query, headers, connection }: Request, res: Response, next: NextFunction) => {
